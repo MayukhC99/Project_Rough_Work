@@ -1,0 +1,1 @@
+Create all scripts in this directory

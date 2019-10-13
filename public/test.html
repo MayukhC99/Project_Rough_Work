@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<script src="jquery-3.4.1.js"></script>
+<script language="javascript">
+	$(function(){
+		function putcolor(a){
+			let temp=$('#temp1');
+			for(let i=1;i<=6;i++){
+				let value=a[i].css("left");
+				//alert(value);
+				temp.animate({left:value},500);
+				//temp.delay(2000).css("left",value).css("visibility","visible");
+			}
+		}
+
+		function f1(){
+			//alert('done');
+			let s=' ';
+			let a=[];
+			for(let i=1;i<=6;i++){
+				s='#d'+i;
+				a[i]=$(s);
+				//alert(a[i].css('left'));
+			}
+			putcolor(a);
+		}
+
+		$('#b1').click(function(){
+			//alert('clicked');
+			f1();
+		})
+
+	});
+</script>
+</head>
+
+<body>
+<div id="d1" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 100px;"> </div>
+<div id="d2" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 150px;"> </div>
+<div id="d3" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 200px;"> </div>
+<div id="d4" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 250px;"> </div>
+<div id="d5" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 300px;"> </div>
+<div id="d6" style="top:100px;position: absolute; width:40px; height:20px;background-color:red;left: 350px;"> </div>
+<div id="temp1" style="top:100px;position: absolute; width:50px; height:20px;background-color:green;left: 100px;visibility: visible;z-index: 1;"> </div>
+<button id="b1">Start</button>
+</body>
+</html>
