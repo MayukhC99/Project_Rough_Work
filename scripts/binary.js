@@ -16,6 +16,20 @@ $(function(){
                 jQuery(this).css("backgroundColor", originalBg); 
             });
     };
+
+    function queue(start) {
+        var rest = [].splice.call(arguments, 1),
+            promise = $.Deferred();
+    
+        if (start) {
+            $.when(start()).then(function () {
+                queue.apply(window, rest);
+            });
+        } else {
+            promise.resolve();
+        }
+        return promise;
+    }
     
     let a = [];
 	
@@ -28,24 +42,66 @@ $(function(){
         }
 
         let temp=$('#temp');
+        let tempLeft=$('#tempLeft');
+        let tempRight=$('#tempRight');
         let mid;
 
         let flag=false;
+        let flagl=false;
+        let flagr=false;
         
         while(l<=r){
             mid=l+parseInt((r-l)/2);
             
+            /***********************Calculations for adjustment***********************/
             let value=a[mid].css("left");
             let v = parseInt(value) -10;
             value = v+"px";
-       
-            temp.animate({left:value},50,function(){    //this function will be queued under #temp object
+            
+            let valuel=a[l].css("left");
+            v=parseInt(valuel)-10;
+            valuel=v+"px";
+
+            let valuer=a[r].css("left");
+            v=parseInt(valuer)-10;
+            valuer=v+"px";
+            /************************************************************************/
+
+
+            /*********************************Animations****************************/
+            
+            queue(function(){   /*all the functions will be queued and work simultaneously in each queue pop. 
+                                    If return tempLeft.animate... 
+                                    is mentioned then all the functions inside queue will occur one after another*/
+                tempLeft.animate({left:valuel},50,function(){
+                    if(!flagl){
+                        tempLeft.css("visibility","visible");
+                        flagl=true;
+                    }  
+                }).delay(3000);    
+            },function(){
+                tempRight.animate({left:valuer},50,function(){
+                    if(!flagr){
+                        tempRight.css("visibility","visible");
+                        flagr=true;
+                    }
+                }).delay(3000);
+            },function(){
+                temp.animate({left:value},50,function(){    
+                    if(!flag){
+                        temp.css("visibility","visible");
+                        flag=true;
+                    }
+                }).delay(3000);
+            })
+
+            /*temp.animate({left:value},50,function(){    //this function will be queued under #temp object
                 if(!flag){
                     temp.css("visibility","visible");
                     flag=true;
                 }
-            }).delay(1000);
-            
+            }).delay(1000);*/
+            /***********************************************************************/
 
             if(ar[mid]==x){
                 return mid;
@@ -64,25 +120,25 @@ $(function(){
 	{
 		
 		let s="";
-		for(i = 1; i <= 11; i++)
+		for(i = 1; i <= 14; i++)
 		{
             s = "#d"+i
             a[i]=$(s);   	
 		}
-        var op=binary(a,1,11,val);
+        var op=binary(a,1,14,val);
         if (op===-1){
-            $('#temp').queue(function(){    /*queue is called for temp #element cause all other animations are queued under
+                                                /*queue is called for temp #element cause all other animations are queued under
                                                 #temp element. So alert will be printed at last. */
                 alert('element not found');
-                $(this).dequeue();
-            });
+                //$(this).dequeue();
         }
-        else
-            $('#temp').queue(function(){    /*queue is called for temp #element cause all other animations are queued under
+        else{
+                                                /*queue is called for temp #element cause all other animations are queued under
                                                 #temp element. So alert will be printed at last. */
+                //$(this).delay(3000)
                 alert('element found at position number '+op);
-                $(this).dequeue();
-            });
+                //$(this).dequeue();
+        }
 
     }
     
