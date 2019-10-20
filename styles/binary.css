@@ -1,18 +1,21 @@
 .old{
-    background-color:red;
+    background-color: gold;
     position:absolute;
     width:50px;
     height:50px;
     top:200px;
     left:20px;
 }
-.newcolor{
-    background-color: rgb(124, 192, 23);
+.notColor{
+    background-color: red;
     width:70px;
     height:70px;
     top:190px;
     z-index: -1;
     visibility: hidden;
+}
+.newColor{
+    background-color: rgb(124, 192, 23);
 }
 .leftright{
     background-color: blue;

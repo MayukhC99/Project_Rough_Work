@@ -104,6 +104,7 @@ $(function(){
             /***********************************************************************/
 
             if(ar[mid]==x){
+                temp.addClass("newColor");
                 return mid;
             }
             if(x<ar[mid])
@@ -126,25 +127,16 @@ $(function(){
             a[i]=$(s);   	
 		}
         var op=binary(a,1,14,val);
-        if (op===-1){
-                                                /*queue is called for temp #element cause all other animations are queued under
-                                                #temp element. So alert will be printed at last. */
-                alert('element not found');
-                //$(this).dequeue();
-        }
-        else{
-                                                /*queue is called for temp #element cause all other animations are queued under
-                                                #temp element. So alert will be printed at last. */
-                //$(this).delay(3000)
-                alert('element found at position number '+op);
-                //$(this).dequeue();
-        }
-
+        if (op===-1)
+                $ ('#Result').html('Status: Element not found ');
+        else
+                $ ('#Result').html('Status: Element found at position number '+op);
     }
     
     let start_btn= $('#b1')
     start_btn.click(function(){
         let val=parseInt($("#text").val());
+        $('#temp').removeClass("newColor");
         fun(val);
     })
 
