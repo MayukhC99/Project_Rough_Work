@@ -8,7 +8,7 @@ $(function(){
         var originalBg = this.css("background-color");
 
         if (!originalBg || originalBg == highlightBg)
-            originalBg = "#FF0000"; // default to red
+            originalBg = "#FFD700"; // default to gold
 
         jQuery(this)
             .css("backgroundColor", highlightBg)
