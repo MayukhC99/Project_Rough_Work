@@ -1,4 +1,4 @@
-.old{
+.old2{
     background-color: gold;
     position:absolute;
     width:50px;
@@ -6,11 +6,19 @@
     top:200px;
     left:20px;
 }
+.old{
+    background-color: gold;
+    position:absolute;
+    width:50px;
+    height:175px;
+    top:175px;
+    left:20px;
+}
 .notColor{
     background-color: red;
     width:70px;
-    height:70px;
-    top:190px;
+    height:100px;
+    top:160px;
     z-index: -1;
     visibility: hidden;
 }
@@ -20,8 +28,8 @@
 .leftright{
     background-color: blue;
     width:70px;
-    height:70px;
-    top:190px;
+    height:100px;
+    top:160px;
     z-index: -3;
     visibility: hidden;
 }
