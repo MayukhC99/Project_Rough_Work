@@ -2,7 +2,7 @@
 $(function(){
 
 
-    $.fn.animateHighlight = function (highlightColor, duration) {
+    /*$.fn.animateHighlight = function (highlightColor, duration) {
         var highlightBg = highlightColor || "#FFFF9C";
         var animateMs = duration || "fast"; // edit is here
         var originalBg = this.css("background-color");
@@ -15,7 +15,7 @@ $(function(){
             .animate({ backgroundColor: originalBg }, animateMs, null, function () {
                 jQuery(this).css("backgroundColor", originalBg); 
             });
-    };
+    };*///This function was created for highlight animations. Use it only when necessary.
 
     function queue(start) {
         var rest = [].splice.call(arguments, 1),
